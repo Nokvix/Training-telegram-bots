@@ -2,7 +2,9 @@ from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
-bot = Bot(token='7493480182:AAGUGN-znKk2e3Yyhr2xmh1bLNroqS3c2KY')
+# TOKEN = '7493480182:AAGUGN-znKk2e3Yyhr2xmh1bLNroqS3c2KY'
+TOKEN = ''
+bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
 
