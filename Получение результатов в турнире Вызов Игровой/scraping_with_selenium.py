@@ -122,9 +122,10 @@ def best_battles_to_string(best_battles) -> str:
 
 def create_message(player_data) -> str:
     print('Создаю сообщение')
-    message: str = (f'Данные игрока: {player_data["nickname"]}\n'
+    message: str = (f'Никнейм игрока: {player_data["nickname"]}\n'
                     f'Текущее место: {player_data["position"]}\n'
                     f'Опыт: {player_data["total_exp"]}\n'
+                    f'Бои, которые пошли в зачёт:\n'
                     f'{best_battles_to_string(player_data["best_15_battles"])}\n'
                     f'Опыт в среднем: {round(player_data["average_exp"], 2)}')
 
@@ -146,8 +147,8 @@ def main(nickname: str):
         offset: int = get_offset(user_position)
         player_data: Dict[str, Union[int, Dict[int, int]]] = get_player_data(offset, user_position)
         message: str = create_message(player_data)
-    except Exception as ex:
-        print(ex)
+    except Exception:
+        message = f'Игрока с никнеймом {nickname} нет в таблице'
     finally:
         driver.close()
         driver.quit()
@@ -156,5 +157,5 @@ def main(nickname: str):
 
 
 if __name__ == '__main__':
-    message = main('Remiut')
+    message = main(input('Введите никнейм: '))
     print(message)
